@@ -1,0 +1,32 @@
+name: Build installers (macOS & Windows)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-matrix:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: macos-latest
+            target: mac
+            build_script: package:mac
+            artifact_name: sticky-tasks-mac
+          - os: windows-latest
+            target: win
+            build_script: package:win
+            artifact_name: sticky-tasks-win
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npm run ${{ matrix.build_script }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: dist/*
