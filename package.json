@@ -1,0 +1,24 @@
+{
+  "name": "sticky-tasks",
+  "version": "0.1.0",
+  "description": "Simple cross-platform sticky-notes task manager (macOS & Windows)",
+  "main": "main.js",
+  "author": "You",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "package:mac": "electron-builder --mac",
+    "package:win": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.example.stickytasks",
+    "productName": "Sticky Tasks",
+    "files": ["**/*"],
+    "mac": { "category": "public.app-category.productivity" },
+    "win": { "target": "nsis" }
+  }
+}
