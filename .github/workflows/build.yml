@@ -29,7 +29,7 @@ jobs:
           node-version: 20
 
       - name: Install deps
-        run: npm ci
+        run: npm install
 
       - name: Print versions (debug)
         run: |
@@ -40,11 +40,8 @@ jobs:
 
       - name: Build installer
         env:
-          # Empêche toute tentative de signature/notarisation
           CSC_IDENTITY_AUTO_DISCOVERY: "false"
-          # Évite certains soucis de téléchargement du binaire Electron
           ELECTRON_SKIP_BINARY_DOWNLOAD: "false"
-          # Token utile à electron-builder (même si on n’upload pas de release)
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run ${{ matrix.build_script }}
 
