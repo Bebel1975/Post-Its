@@ -1,1 +1,5 @@
-console.log('Preload script here');
+const { contextBridge, ipcRenderer } = require('electron');
+
+contextBridge.exposeInMainWorld('stickyAPI', {
+  onCreateNewNote: (callback) => ipcRenderer.on('create-new-note', callback)
+});
