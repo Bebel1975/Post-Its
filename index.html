@@ -1,1 +1,51 @@
-<!doctype html><html><body><h1>Sticky Tasks</h1></body></html>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sticky Tasks</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="app-header">
+    <h1>🗒️ Sticky Tasks</h1>
+    <div class="actions">
+      <button id="newNoteBtn" title="Nouvelle note (Ctrl/Cmd+N)">+ Nouvelle note</button>
+      <button id="clearDoneBtn" title="Supprimer les tâches terminées">🧹 Vider les terminées</button>
+      <label class="search">
+        <input id="searchInput" placeholder="Rechercher…"/>
+      </label>
+    </div>
+  </header>
+
+  <main id="board" class="board" aria-live="polite"></main>
+
+  <template id="note-tpl">
+    <article class="note" draggable="true">
+      <header class="note-header">
+        <input class="title" placeholder="Titre…"/>
+        <div class="note-actions">
+          <input class="due" type="date" title="Échéance"/>
+          <select class="color" title="Couleur">
+            <option value="yellow">Jaune</option>
+            <option value="pink">Rose</option>
+            <option value="mint">Menthe</option>
+            <option value="blue">Bleu</option>
+            <option value="lilac">Lilas</option>
+          </select>
+          <button class="delete" title="Supprimer">✕</button>
+        </div>
+      </header>
+      <section class="note-body">
+        <textarea class="content" placeholder="Détails…"></textarea>
+      </section>
+      <footer class="note-footer">
+        <label><input type="checkbox" class="done"/> Terminé</label>
+      </footer>
+    </article>
+  </template>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
